@@ -5,8 +5,6 @@ SMODS.Atlas{
 	py = 95
 }
 
-G.C.METAL = HEX('d4b79b')
-
 SMODS.ConsumableType {
     key = 'Metal',
     default = 'c_ele_iron',
@@ -1780,11 +1778,17 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.2), contrast = 3 }
+            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
-    create_card = function(self, card)
-        local card = create_metal(G.pack_cards, nil, nil, true, true, nil, 'alc')
-        return card
+    create_card = function(self, card, i)
+        return {
+            set = "Metal",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+            key_append =
+            "ele_met"
+        }
     end,
 }
 SMODS.Booster {
@@ -1806,11 +1810,17 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.2), contrast = 3 }
+            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
-    create_card = function(self, card)
-        local card = create_metal(G.pack_cards, nil, nil, true, true, nil, 'alc')
-        return card
+    create_card = function(self, card, i)
+        return {
+            set = "Metal",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+            key_append =
+            "ele_met"
+        }
     end,
 }
 SMODS.Booster {
@@ -1832,11 +1842,17 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.2), contrast = 3 }
+            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
-    create_card = function(self, card)
-        local card = create_metal(G.pack_cards, nil, nil, true, true, nil, 'alc')
-        return card
+    create_card = function(self, card, i)
+        return {
+            set = "Metal",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+            key_append =
+            "ele_met"
+        }
     end,
 }
 SMODS.Booster {
@@ -1858,11 +1874,17 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.2), contrast = 3 }
+            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
-    create_card = function(self, card)
-        local card = create_metal(G.pack_cards, nil, nil, true, true, nil, 'alc')
-        return card
+    create_card = function(self, card, i)
+        return {
+            set = "Metal",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+            key_append =
+            "ele_met"
+        }
     end,
 }
 SMODS.Booster {
@@ -1884,11 +1906,17 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.2), contrast = 3 }
+            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
-    create_card = function(self, card)
-        local card = create_metal(G.pack_cards, nil, nil, true, true, nil, 'alc')
-        return card
+    create_card = function(self, card, i)
+        return {
+            set = "Metal",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+            key_append =
+            "ele_met"
+        }
     end,
 }
 SMODS.Booster {
@@ -1910,11 +1938,17 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.2), contrast = 3 }
+            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
-    create_card = function(self, card)
-        local card = create_metal(G.pack_cards, nil, nil, true, true, nil, 'alc')
-        return card
+    create_card = function(self, card, i)
+        return {
+            set = "Metal",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+            key_append =
+            "ele_met"
+        }
     end,
 }
 SMODS.Booster {
@@ -1938,10 +1972,15 @@ SMODS.Booster {
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
             ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.2), contrast = 3 }
         end,
-
-    create_card = function(self, card)
-        local card = create_metal(G.pack_cards, nil, nil, true, true, nil, 'alc')
-        return card
+    create_card = function(self, card, i)
+        return {
+            set = "Metal",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+            key_append =
+            "ele_met"
+        }
     end,
 }
 SMODS.Booster {
@@ -1963,11 +2002,16 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.4), contrast = 3 }
+            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
-
-    create_card = function(self, card)
-        local card = create_metal(G.pack_cards, nil, nil, true, true, nil, 'alc')
-        return card
+    create_card = function(self, card, i)
+        return {
+            set = "Metal",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+            key_append =
+            "ele_met"
+        }
     end,
 }
