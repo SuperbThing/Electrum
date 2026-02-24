@@ -115,7 +115,7 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     mask *= sin(7.61 + 5.5*stretched_uv2.x+iridescent.x*8);
     mask *= sin(7.61 + 5.5*stretched_uv2.x+iridescent.x*8);
     mask += sin(4.34 + 7.3*stretched_uv2.y+iridescent.x*4)*0.2;
-    tex.rgb *= 0.9 
+    tex.rgb *= 0.9;
     tex.rgb += vec3(0.25,0.25,0.25)-iridescent.x*0.2;
     tex.rgb += rainbow.rgb*clamp(mask,0,1);
     
