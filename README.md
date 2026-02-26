@@ -10,3 +10,4 @@ This mod currently adds:
 - 20 jokers
 - 5 blinds (all are showdown blinds)
 - and some other misc stuff like tarots, enhancements etc.
+<img width="1010" height="569" alt="Screenshot_11" src="https://github.com/user-attachments/assets/2cc64a28-61c3-4008-8548-2e3188354a08" />
