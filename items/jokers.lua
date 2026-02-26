@@ -103,54 +103,47 @@ SMODS.Joker {
 }
 SMODS.Joker {
     key = "cardboard_joker",
-    atlas = "jokers",
-    pos = { x = 0, y = 1 },
-    cost = 6,
+    blueprint_compat = true,
     rarity = 2,
-    config = {
-        extra = {
-            xmult = 1,
-            xmult_gain = 0.1
-        }
-    },
-
+    cost = 7,
+    pos = { x = 0, y = 1 },
+	atlas = "jokers",
+    config = { extra = { mult = 2 } },
     loc_vars = function(self, info_queue, card)
-        return {
-            vars = { card.ability.extra.xmult_gain, card.ability.extra.xmult }
-        }
-    end,
-
-    calculate = function(self, card, context)
-
-        -- Permanent scaling at end of round
-        if context.end_of_round and context.main_eval then
-            
-            local cardboard_count = 0
-
-            for _, held_card in ipairs(G.hand.cards) do
-                if SMODS.has_enhancement(held_card, "cardboard") then
-                    cardboard_count = cardboard_count + 1
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_ele_cardboard
+        local base_mult = (card and card.ability and card.ability.extra and card.ability.extra.mult) or self.config.extra.mult or 0
+        local cardboard_tal = 0
+        if G.playing_cards then
+            for _, playing_card in ipairs(G.playing_cards) do
+                if SMODS.has_enhancement(playing_card, 'm_ele_cardboard') then
+                    cardboard_tal = cardboard_tal + 1
                 end
             end
-
-            if cardboard_count > 0 then
-                card.ability.extra.xmult =
-                    card.ability.extra.xmult +
-                    (cardboard_count * card.ability.extra.xmult_gain)
-
-                card:juice_up()
-                card_eval_status_text(card, 'extra', nil, nil, nil,
-                    { message = "Upgraded!" })
-            end
         end
-
-
-        -- Apply multiplier during scoring
+        return {
+            vars = {
+                base_mult, base_mult * cardboard_tal
+            }
+        }
+    end,
+    calculate = function(self, card, context)
         if context.joker_main then
+            local cardboard_tal = 0
+            for _, playing_card in ipairs(G.playing_cards) do
+                if SMODS.has_enhancement(playing_card, 'm_ele_cardboard') then cardboard_tal = cardboard_tal + 1 end
+            end
             return {
-                Xmult = card.ability.extra.xmult
+                mult = base_mult * cardboard_tal,
             }
         end
+    end,
+    in_pool = function(self, args) 
+        for _, playing_card in ipairs(G.playing_cards or {}) do
+            if SMODS.has_enhancement(playing_card, 'm_ele_cardboard') then
+                return true
+            end
+        end
+        return false
     end
 }
 SMODS.Joker {
@@ -214,7 +207,7 @@ local function reset_ele_erratic_card()
 	local erratic_card = pseudorandom_element(erratic_suits, 'ele_erratic' .. G.GAME.round_resets.ante)
 	G.GAME.current_round.ele_erratic_card.suit = erratic_card
 end
--- This thing changes variables globally each round
+
 function SMODS.current_mod.reset_game_globals(run_start)
     reset_ele_erratic_card()
 end
@@ -234,18 +227,16 @@ SMODS.Joker {
         if context.end_of_round and context.main_eval then
             local metal_count = 0
             for _, c in ipairs(G.consumeables.cards) do
-                if c.config and c.config.set == "Metal" then
+                if c.ability.set == 'Metal' then
                     metal_count = metal_count + 1
                 end
             end
             if metal_count > 0 then
-                card.ability.extra.mult =
-                    card.ability.extra.mult +
-                    (metal_count * card.ability.extra.gain)
-
+                local gain_amount = metal_count * card.ability.extra.gain
+                card.ability.extra.mult = card.ability.extra.mult + gain_amount
                 card:juice_up()
                 card_eval_status_text(card, 'extra', nil, nil, nil,
-                    { message = "+" .. (metal_count * card.ability.extra.gain) .. " Mult" })
+                    { message = "+" .. gain_amount .. " mult" })
             end
         end
         if context.joker_main then
@@ -278,8 +269,7 @@ SMODS.Joker {
             else
                 card.ability.extra.amp = card.ability.extra.amp - card.ability.extra.amp_loss
                 return {
-                    message = localize { type = 'variable', key = 'a_amp_minus', vars = { card.ability.extra.amp_loss } },
-                    colour = G.C.RED
+                    message = localize('amp_loss'), colour = G.C.RED
                 }
             end
         end
@@ -328,7 +318,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.joker_main then
             return {
-                xamp = card.ability.extra.xamp
+                xamp = card.ability.extra.xamp,
                 xmult = card.ability.extra.xmult
             }
         end
@@ -348,7 +338,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.using_consumeable and not context.blueprint and context.consumeable.ability.set == "metal" then
             return {
-                message = localize { type = 'variable', key = 'a_mult', vars = { G.GAME.consumeable_usage_total.metal * card.ability.extra.mult } },
+                message = localize { type = 'variable', key = 'a_amp', vars = { G.GAME.consumeable_usage_total.metal * card.ability.extra.amp } },
             }
         end
         if context.joker_main then
@@ -361,7 +351,7 @@ SMODS.Joker {
             if card.ability.extra.hands_left - 1 <= 0 then
                 SMODS.destroy_cards(card, nil, nil, true)
                 return {
-                    message = localize('k_eaten_ex'),
+                    message = localize('eaten'),
                     colour = G.C.FILTER
                 }
             else
@@ -376,7 +366,6 @@ SMODS.Joker {
 }
 SMODS.Joker {
     key = "metallurgist",
-    unlocked = false,
     blueprint_compat = true,
     rarity = 2,
     cost = 6,
@@ -390,7 +379,7 @@ SMODS.Joker {
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             SMODS.add_card {
-                                set = 'Tarot',
+                                set = 'Metal',
                                 key_append = 'ele_metallurgist'
                             }
                             G.GAME.consumeable_buffer = 0
@@ -403,6 +392,124 @@ SMODS.Joker {
                 end)
             }))
             return nil, true 
+        end
+    end
+}
+SMODS.Joker {
+    key = 'wave',
+    config = { extra = { amp = 0.5, positive = true } },
+    rarity = 1,
+    cost = 3,
+    blueprint_compat = true,
+    pos = { x = 4, y = 2 },
+    atlas = 'jokers',
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.amp } }
+    end,
+    calculate = function(self, card, context)
+        local config = card.ability.extra
+        if context.joker_main then
+            return {
+                amp = card.ability.extra.positive and card.ability.extra.amp or -card.ability.extra.amp
+            }
+        end
+        if context.after and not context.blueprint then
+            card.ability.extra.positive = not card.ability.extra.positive
+        end
+    end
+}
+SMODS.Joker {
+    key = "stonks",
+    blueprint_compat = true,
+    rarity = 2,
+    cost = 6,
+    atlas = 'jokers',
+    pos = { x = 0, y = 3 },
+    config = { extra = { amp = 0.1 } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.amp, card.ability.extra.amp * math.max(0, (G.GAME.dollars / 2 or 0) + (G.GAME.dollar_buffer or 0)) } }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main then
+            return {
+                amp = card.ability.extra.amp * math.max(0, (G.GAME.dollars + (G.GAME.dollar_buffer or 0)))
+            }
+        end
+    end,
+}
+SMODS.Joker {
+    key = "majestic",
+    blueprint_compat = true,
+    rarity = 1,
+    cost = 3,
+    atlas = 'jokers',
+    pos = { x = 2, y = 3 },
+    config = { extra = { mult = 12, type = 'ele_blaze' } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.mult, localize(card.ability.extra.type, 'poker_hands') } }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main and next(context.poker_hands[card.ability.extra.type]) then
+            return {
+                mult = card.ability.extra.mult
+            }
+        end
+    end
+}
+SMODS.Joker {
+    key = "deceitful",
+    blueprint_compat = true,
+    rarity = 1,
+    cost = 3,
+    atlas = 'jokers',
+    pos = { x = 3, y = 3 },
+    config = { extra = { chips = 80, type = 'ele_blaze' } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.chips, localize(card.ability.extra.type, 'poker_hands') } }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main and next(context.poker_hands[card.ability.extra.type]) then
+            return {
+                chips = card.ability.extra.chips
+            }
+        end
+    end
+}
+SMODS.Joker {
+    key = "court",
+    blueprint_compat = true,
+    rarity = 3,
+    cost = 8,
+    atlas = 'jokers',
+    pos = { x = 4, y = 3 },
+    config = { extra = { xmult = 3, type = 'ele_blaze' } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.xmult, localize(card.ability.extra.type, 'poker_hands') } }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main and next(context.poker_hands[card.ability.extra.type]) then
+            return {
+                xmult = card.ability.extra.xmult
+            }
+        end
+    end
+}
+SMODS.Joker {
+    key = "glorious",
+    blueprint_compat = true,
+    rarity = 1,
+    cost = 3,
+    atlas = 'jokers',
+    pos = { x = 1, y = 3 },
+    config = { extra = { amp = 0.7, type = 'ele_blaze' } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.amp, localize(card.ability.extra.type, 'poker_hands') } }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main and next(context.poker_hands[card.ability.extra.type]) then
+            return {
+                amp = card.ability.extra.amp
+            }
         end
     end
 }

@@ -1,14 +1,17 @@
-SMODS.Atlas{
-	key = "blinds",
-	path = "blinds.png",
-	px = 34,
-	py = 34
-}
+SMODS.Atlas({
+    key = 'blinds',
+    path = 'blinds.png',
+    atlas_table = 'ANIMATION_ATLAS',
+    frames = 21,
+    px = 34,
+    py = 34
+})
 
 SMODS.Blind {
     key = "candle_final",
     dollars = 8,
     mult = 2,
+    atlas = 'blinds',
     pos = { x = 0, y = 0 },
     boss = { showdown = true },
     boss_colour = HEX("e57a10"),
@@ -27,6 +30,7 @@ SMODS.Blind {
     key = "club_final",
     dollars = 8,
     mult = 3,
+    atlas = 'blinds',
     pos = { x = 0, y = 1 },
     boss = { showdown = true },
     boss_colour = HEX("5b9baa"),
@@ -45,77 +49,49 @@ SMODS.Blind {
     key = "scepter_final",
     dollars = 8,
     mult = 1.5,
+    atlas = 'blinds',
     pos = { x = 0, y = 2 },
     boss = { showdown = true },
+    config = { extra = { change = 10 } },
     boss_colour = HEX("6a3847"),
     loc_vars = function(self, info_queue, card)
-    update_score = function(self, args)
-        local min = math.min(args.chips, args.mult)
-        args.mult = min
-        args.chips = min
-        update_hand_text({delay = 0}, {mult = args.mult, chips = args.chips})
-
-        G.E_MANAGER:add_event(Event({
-            func = (function()
-                local text = localize('deprecated')
-                play_sound('gong', 0.74, 0.3)
-                play_sound('gong', 0.74*1.5, 0.2)
-                play_sound('tarot1', 0.5)
-                ease_colour(G.C.UI_CHIPS, darken(G.C.UI_MULT, 0.5))
-                ease_colour(G.C.UI_MULT, darken(G.C.UI_MULT, 0.5))
-                attention_text({
-                    scale = 1.4, text = text, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
-                })
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
-                    blockable = false,
-                    blocking = false,
-                    delay =  4.3,
-                    func = (function() 
-                            ease_colour(G.C.UI_CHIPS, G.C.BLUE, 2)
-                            ease_colour(G.C.UI_MULT, G.C.RED, 2)
-                        return true
-                    end)
-                }))
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
-                    blockable = false,
-                    blocking = false,
-                    no_delete = true,
-                    delay =  6.3,
-                    func = (function() 
-                        G.C.UI_CHIPS[1], G.C.UI_CHIPS[2], G.C.UI_CHIPS[3], G.C.UI_CHIPS[4] = G.C.BLUE[1], G.C.BLUE[2], G.C.BLUE[3], G.C.BLUE[4]
-                        G.C.UI_MULT[1], G.C.UI_MULT[2], G.C.UI_MULT[3], G.C.UI_MULT[4] = G.C.RED[1], G.C.RED[2], G.C.RED[3], G.C.RED[4]
-                        return true
-                    end)
-                }))
+        return {vars = {self.config.extra.change}}
+    end,
+    collection_loc_vars = function(self)
+        return {vars = {self.config.extra.change}}
+    end,
+    modify_hand = function(self, cards, poker_hands, text, mult, hand_chips)
+        for _, card in pairs(cards) do
+            G.E_MANAGER:add_event(Event({ trigger = 'after', func = function()
+                G.GAME.blind.chips = G.GAME.blind.chips * (1 + self.config.extra.change/100)
+                G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                card:juice_up()
+                play_sound('xchips', 0.75)
                 return true
-            end)
-        }))
-
-        delay(0.6)
-
-        return min
+            end })) 
+            card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('scepter_up')})
+        end
+        return mult, hand_chips, false
     end
 }
 SMODS.Blind {
     key = "coin_final",
     dollars = 8,
     mult = 2,
+    atlas = 'blinds',
     pos = { x = 0, y = 3 },
     boss = { showdown = true },
     boss_colour = HEX("50bf7c"),
-    config = {extra = {odds_flip = 3, odds_debuff = 4}},
     loc_vars = function(self)
-        local numerator_flip, denominator_flip = SMODS.get_probability_vars(self, 1, G.GAME.blind.effect.extra.odds_flip, 'coin_flip')
-        local numerator_debuff, denominator_debuff = SMODS.get_probability_vars(self, 1, G.GAME.blind.effect.extra.odds_debuff, 'coin_debuff')
+        local numerator_flip, denominator_flip = SMODS.get_probability_vars(self, 1, 3, 'coin_flip')
+        local numerator_debuff, denominator_debuff = SMODS.get_probability_vars(self, 1, 4, 'coin_debuff')
         return { vars = { numerator_flip, denominator_flip, numerator_debuff, denominator_debuff } }
     end,
     calculate = function(self, blind, context)
         if context.hand_drawn then
             if not blind.disabled then
                 for _, card in ipairs(context.hand_drawn) do
-                    if SMODS.pseudorandom_probability(G.GAME.blind, 'coin_debuff', 1, G.GAME.blind.effect.extra.odds_debuff) then
+                    if SMODS.pseudorandom_probability(blind, 'coin_debuff', 1, 4) then
                         card:set_debuff(true)
                         if card.debuff then card.debuffed_by_blind = true end
                     end
@@ -124,7 +100,7 @@ SMODS.Blind {
         end
         if not blind.disabled then
             if context.stay_flipped and context.to_area == G.hand and
-                SMODS.pseudorandom_probability(blind, 'ele_coin_final', 1, G.GAME.blind.effect.extra.odds_flip) then
+                SMODS.pseudorandom_probability(blind, 'ele_coin_final', 1, 3) then
                 return {
                     stay_flipped = true
                 }
@@ -136,6 +112,7 @@ SMODS.Blind {
     key = "hourglass_final",
     dollars = 8,
     mult = 2,
+    atlas = 'blinds',
     pos = { x = 0, y = 4 },
     boss = { showdown = true },
     boss_colour = HEX("efc03c"),

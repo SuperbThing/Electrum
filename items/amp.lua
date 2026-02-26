@@ -1,6 +1,6 @@
 SMODS.Sound{
     key = "sfx_amp",
-    path = "amp.ogg",
+    path = "amp_old.ogg",
 }
 SMODS.Sound{
     key = "sfx_xamp",

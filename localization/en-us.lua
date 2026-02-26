@@ -41,8 +41,8 @@ return {
             bl_ele_scepter_final = {
                 name = "Mulberry Scepter",
                 text = {
-                    "Set chips and",
-                    "mult to the lower value",
+					'Blind size increases',
+					'by #1#% per card played'
                 },
             },
             bl_ele_coin_final = {
@@ -60,37 +60,204 @@ return {
                 },
             },
         },
+        Joker = {
+            j_ele_cheerful = {
+                name = "Cheerful Joker",
+                text = {
+                    "{C:attention}+#1#{} Amp if played",
+                    "hand contains",
+                    "a {C:attention}#2#",
+                },
+            },
+            j_ele_goofy = {
+                name = "Goofy Joker",
+                text = {
+                    "{C:attention}+#1#{} Amp if played",
+                    "hand contains",
+                    "a {C:attention}#2#",
+                },
+            },
+            j_ele_bonkers = {
+                name = "Bonkers Joker",
+                text = {
+                    "{C:attention}+#1#{} Amp if played",
+                    "hand contains",
+                    "a {C:attention}#2#",
+                },
+            },
+            j_ele_insane = {
+                name = "Insane Joker",
+                text = {
+                    "{C:attention}+#1#{} Amp if played",
+                    "hand contains",
+                    "a {C:attention}#2#",
+                },
+            },
+            j_ele_comical = {
+                name = "Comical Joker",
+                text = {
+                    "{C:attention}+#1#{} Amp if played",
+                    "hand contains",
+                    "a {C:attention}#2#",
+                },
+            },
+            j_ele_cardboard_joker = {
+                name = "Cardboard Joker",
+                text = {
+                    "Gains {C:mult}+#1#{} Mult",
+                    "for each {C:attention}Cardboard Card",
+                    "in your {C:attention}full deck",
+                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)",
+                },
+            },
+            j_ele_magnet = {
+                name = "Magnet",
+                text = {
+                    "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
+                    "for each {C:metal}Metal{} Card",
+                    "{C:attention}held in consumable{} area",
+                },
+            },
+            j_ele_erratic = {
+                name = "Erratic Joker",
+                text = {
+                    "{C:chips}+#1#{} Chips, {C:mult}+#2#{} Mult, and {C:attention}+#3#{} Amp",
+                    "for each played card with {V:1}#4#{} suit",
+                    "{s:0.8}suit changes at end of round",
+                },
+            },
+            j_ele_geiger = {
+                name = "Geiger Counter",
+                text = {
+                    "Gains {C:mult}+#2#{} Mult for",
+                    "for each {C:metal}Metal{} Card",
+                    "{C:attention}held in consumable{} area",
+                    "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)",
+                },
+            },
+            j_ele_syrup = {
+                name = "Maple Syrup",
+                text = {
+                    "{C:attention}+#1#{} Amp",
+                    "{C:attention}-#2#{} Amp per",
+                    "round played",
+                },
+            },
+            j_ele_spectro = {
+                name = "Spectrogram",
+                text = {
+                    "{C:attention}+#1#{} Amp for each",
+                    "{C:attention}scored{} card",
+                },
+            },
+            j_ele_speaker = {
+                name = "Speaker",
+                text = {
+                    "{X:attention,C:white}X#1#{} Amp",
+                    "{X:mult,C:white}X#2#{} Mult",
+                },
+            },
+            j_ele_butter = {
+                name = "Butter",
+                text = {
+                    "{C:attention}+#1#{} Amp for each",
+                    "{C:metal}Metal{} card used this run",
+                    "for the next {C:attention}#3#{} hands",
+                    "{C:inactive}(Currently {C:attention}+#2#{C:inactive} Amp)",
+                },
+            },
+            j_ele_metallurgist = {
+                name = "Metallurgist",
+                text = {
+                    "Create a {C:metal}Metal{} card",
+                    "when {C:attention}Boss Blind{} is selected",
+                    "{C:inactive}(Must have room)",
+                },
+            },
+            j_ele_wave = {
+                name = "Sine Wave",
+                text = {
+                    "{C:attention}Alternates{} between",
+                    "{C:attention}+#1#{} Amp and",
+                    "{C:attention}-#1#{} Amp per",
+                    "hand played",
+                },
+            },
+            j_ele_stonks = {
+                name = "Stonks",
+                text = {
+                    "{C:attention}+#1#{} Amp for",
+                    "each {C:money}$2{} you have",
+                    "{C:inactive}(Currently {C:attention}+#2#{C:inactive} Amp)",
+                },
+            },
+            j_ele_majestic = {
+                name = "Majestic Joker",
+                text = {
+                    "{C:mult}+#1#{} mult if played",
+                    "hand contains",
+                    "a {C:attention}#2#",
+                },
+            },
+            j_ele_deceitful = {
+                name = "Deceitful Joker",
+                text = {
+                    "{C:chips}+#1#{} chips if played",
+                    "hand contains",
+                    "a {C:attention}#2#",
+                },
+            },
+            j_ele_court = {
+                name = "The Court",
+                text = {
+                    "{X:mult,C:white}X#1#{} mult if played",
+                    "hand contains",
+                    "a {C:attention}#2#",
+                },
+            },
+            j_ele_glorious = {
+                name = "Glorious Joker",
+                text = {
+                    "{C:attention}+#1#{} amp if played",
+                    "hand contains",
+                    "a {C:attention}#2#",
+                },
+            },
+        },
         Metal = {
             c_ele_iron = {
                 name = "Iron",
                 text = {
                     "Creates a {C:attention}Double tag{} after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_gold = {
                 name = "Gold",
                 text = {
-                    "Enhance {C:attention}#3#{} selected cards into {C:attention}Gold{} cards",
+                    "Enhance {C:attention}#3#{} selected",
+                    "cards into {C:attention}Gold{} cards",
                     "after being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_copper = {
                 name = "Copper",
                 text = {
-                    "Creates up to {C:attention}#3#{} random {C:metal}Metal{} cards after",
+                    "Creates up to {C:attention}#3#{} random",
+                    " {C:metal}Metal{} cards after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_silver = {
                 name = "Silver",
                 text = {
-                    "Enhance {C:attention}#3#{} selected cards into {C:attention}Lucky{} cards",
+                    "Enhance {C:attention}#3#{} selected",
+                    "cards into {C:attention}Lucky{} cards",
                     "after being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_lead = {
@@ -98,7 +265,7 @@ return {
                 text = {
                     "Creates a {C:dark_edition}Negative tag{} after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_zinc = {
@@ -106,7 +273,7 @@ return {
                 text = {
                     "Creates an {C:attention}Uncommon tag{} after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_brass = {
@@ -114,15 +281,16 @@ return {
                 text = {
                     "Creates a {C:dark_edition}Negative{} {C:tarot}Tarot{} card",
                     "after being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_steel = {
                 name = "Steel",
                 text = {
-                    "Enhance {C:attention}#3#{} selected cards into {C:attention}Steel{} cards",
+                    "Enhance {C:attention}#3#{} selected",
+                    "cards into {C:attention}Steel{} cards",
                     "after being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_rose_gold = {
@@ -131,7 +299,7 @@ return {
                     "Add a {C:attention}Random Seal{} to",
                     "{C:attention}1{} selected card in your hand",
                     "after being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_uranium = {
@@ -141,15 +309,16 @@ return {
                     "{C:dark_edition}Holographic{}, or {C:dark_edition}Polychrome{} edition",
                     "to selected {C:attention}Joker after being held",
                     "for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_platinum = {
                 name = "Platinum",
                 text = {
-                    "Enhance {C:attention}#3#{} selected cards into {C:attention}Glass{} cards",
+                    "Enhance {C:attention}#3#{} selected",
+                    "cards into {C:attention}Glass{} cards",
                     "after being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_titanium = {
@@ -157,7 +326,7 @@ return {
                 text = {
                     "Reduce {C:attention}Blind size{} by {C:attention}#3#%{} after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_bronze = {
@@ -165,7 +334,7 @@ return {
                 text = {
                     "Creates a {C:attention}D6 tag{} after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_bismuth = {
@@ -174,7 +343,7 @@ return {
                     "Add {C:dark_edition}Polychrome{} edition to",
                     "a random {C:attention}Joker{} after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_cobalt = {
@@ -183,23 +352,24 @@ return {
                     "{C:planet}Level up{} your {C:attention}Most played",
                     "{C:attention}poker hand{} after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_tin = {
                 name = "Tin",
                 text = {
-                    "Enhance {C:attention}#3#{} selected cards into {C:attention}Cardboard{} cards",
+                    "Enhance {C:attention}#3#{} selected",
+                    "cards into {C:attention}Cardboard{} cards",
                     "after being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_aluminum = {
                 name = "Aluminum",
                 text = {
-                    "Add {C:dark_edition}Foil{} to selected card after",
-                    "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "Add {C:dark_edition}Foil{} to selected card",
+                    "after being held for {C:attention}#1#{} rounds",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_tungsten = {
@@ -207,7 +377,7 @@ return {
                 text = {
                     "Create {C:attention}#3# Tags{} after being",
                     "held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 }
             },
             c_ele_iridium = {
@@ -216,7 +386,7 @@ return {
                     "Add {C:dark_edition}Iridescent{} edition to",
                     "a random {C:attention}Joker{} after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
             c_ele_electrum = {
@@ -225,7 +395,7 @@ return {
                     "Add {C:dark_edition}Negative{} edition to",
                     "a random {C:attention}Joker{} after",
                     "being held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
         },
@@ -235,7 +405,7 @@ return {
                 text = {
                     "{C:dark_edition}+#3#{} joker slot after being",
                     "held for {C:attention}#1#{} rounds",
-                    "{C:inactive} currently {}{C:attention}#2#{}{C:inactive}/#1# rounds{}",
+                    "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
         },
@@ -286,33 +456,70 @@ return {
                 name = "Forge Deck",
                 text = {
                     "Start run with the",
-                    "{C:metal,T:v_ele_anvil}#1#{} voucher",
+                    "{C:metal,T:v_ele_metal_merchant}#1#{} voucher",
                     "and a copy of {C:metal,T:c_ele_copper}#2#",
                 },
             },
         },
-    },
-    Other = {
-        p_ele_metal_normal = {
-            name = "Metallic Pack",
-            text = {
-                "Choose {C:attention}#1#{} of up to {C:attention}#2#",
-                "{C:metal}Metal{} cards",
-            }
+        Planet = { 
+            c_ele_proximab = {
+                name = "Proxima b",
+                text = {
+                    "({V:1}lvl.#1#{}) Level up",
+                    "{C:attention}#2#",
+                    "{C:mult}+#3#{} Mult and",
+                    "{C:chips}+#4#{} chips",
+                },
+            },
+            c_ele_proximac = {
+                name = "Proxima c",
+                text = {
+                    "({V:1}lvl.#1#{}) Level up",
+                    "{C:attention}#2#",
+                    "{C:mult}+#3#{} Mult and",
+                    "{C:chips}+#4#{} chips",
+                },
+            },
         },
-        p_ele_metal_jumbo = {
-            name = "Jumbo Metallic Pack",
-            text = {
-                "Choose {C:attention}#1#{} of up to {C:attention}#2#",
-                "{C:metal}Metal{} cards",
-            }
+        Tag = {
+            tag_ele_anvil = {
+                name = "Anvil Tag",
+                text = {
+                    "Gives a free",
+                    "{C:metal}Mega Mettalic Pack",
+                },
+            },
+            tag_ele_irid = {
+                name = "Iridescent Tag",
+                text = {
+                    "Next base edition shop",
+                    "Joker is free and",
+                    "becomes {C:dark_edition}Iridescent",
+                },
+            },
         },
-        p_ele_metal_mega = {
-            name = "Mega Metallic Pack",
-            text = {
-                "Choose {C:attention}#1#{} of up to {C:attention}#2#",
-                "{C:metal}Metal{} cards",
-            }
+        Other = {
+            p_ele_metal_normal = {
+                name = "Metallic Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to {C:attention}#2#",
+                    "{C:metal}Metal{} cards",
+                }
+            },
+            p_ele_metal_jumbo = {
+                name = "Jumbo Metallic Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to {C:attention}#2#",
+                    "{C:metal}Metal{} cards",
+                }
+            },
+            p_ele_metal_mega = {
+                name = "Mega Metallic Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to {C:attention}#2#",
+                    "{C:metal}Metal{} cards",
+                }
+            },
         },
     },
     misc = {
@@ -324,8 +531,26 @@ return {
         k_metal = "Metal",
         b_metal_cards = "Metal Cards",
         metal_ready = "Ready!",
-		deprecated = 'Minimised.',
+		scepter_up = '+X0.1',
+		drank = 'Drank!',
+		eaten = 'Eaten!',
+		amp_loss = '-0.1 Amp',
+		plus_metal = '+1 Metal',
+		plus_tarot = '+1 Tarot',
         k_metal_pack = "Metallic Pack",
         },
+        poker_hand_descriptions = {
+            ele_blaze = {
+                "5 Face cards",
+            },
+            ele_blaze_flush = {
+                "5 Face cards with all",
+                "cards sharing the same suit",
+            },
+        },
+        poker_hands = {
+            ele_blaze = "Blaze",
+            ele_blaze_flush = "Blaze Flush",
+        }
     }
 }

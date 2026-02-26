@@ -1,5 +1,7 @@
 SMODS.Shader({key = 'iridescent', path = 'iridescent.fs'})
 SMODS.Sound({key = 'iridescent', path = 'multi_balance.ogg'})
+SMODS.Shader({key = 'tint', path = 'tinted.fs'})
+SMODS.Sound({key = 'tint', path = 'e_tinted.ogg'})
 
 SMODS.Edition {
     key = 'iridescent',
@@ -8,7 +10,7 @@ SMODS.Edition {
     in_shop = true,
     weight = 3,
     extra_cost = 5,
-    sound = { sound = "iridescent", per = 1.2, vol = 0.7 },
+    sound = { sound = "ele_iridescent", per = 1.0, vol = 0.7 },
     loc_vars = function(self, info_queue, card)
         return { vars = { card.edition.amp } }
     end,

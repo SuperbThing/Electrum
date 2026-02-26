@@ -9,7 +9,7 @@ SMODS.Enhancement {
     key = 'amp',
     pos = { x = 0, y = 0 },
 	atlas = "enhancers",
-    config = { amp = 1.2 },
+    config = { amp = 0.2 },
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.amp } }
     end,
@@ -43,6 +43,7 @@ SMODS.Enhancement {
                         return true
                     end
                 }))
+                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('plus_tarot'), colour = G.C.PURPLE })
             end
         end
     end

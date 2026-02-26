@@ -16,4 +16,8 @@ assert(SMODS.load_file("items/backs.lua"))()
 assert(SMODS.load_file("items/vouchers.lua"))()
 assert(SMODS.load_file("items/tarots.lua"))()
 assert(SMODS.load_file("items/jokers.lua"))()
+assert(SMODS.load_file("items/blinds.lua"))()
+assert(SMODS.load_file("items/poker_hands.lua"))()
+assert(SMODS.load_file("items/planets.lua"))()
+assert(SMODS.load_file("items/tags.lua"))()
 

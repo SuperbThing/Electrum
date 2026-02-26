@@ -29,16 +29,11 @@ SMODS.Consumable {
 		}
 	},
 	loc_vars = function(self, info_queue, card)
-		return { vars = { 
-			card.ability.extra.rounds_required,
-			card.ability.extra.rounds_held
-		} }
+		return { vars = { card.ability.extra.rounds_required, card.ability.extra.rounds_held } }
 	end,
-
     can_use = function(self, card)
         return card.ability.extra.charged
     end,
-
     use = function(self, card, area, copier)
     	for i = 1, 1 do
     		G.E_MANAGER:add_event(Event({
@@ -53,9 +48,7 @@ SMODS.Consumable {
     	end
     	delay(0.6)
     end,
-
     calculate = function(self, card, context)
-
         if context.end_of_round and not context.repetition then
             -- Make sure it's still in consumables
             if card.area == G.consumeables then
@@ -225,8 +218,7 @@ SMODS.Consumable {
 
     can_use = function(self, card)
         return card.ability.extra.charged
-			and (G.consumeables and #G.consumeables.cards < G.consumeables.config.card_limit) or
-            	(card.area == G.consumeables)
+			and (G.consumeables and #G.consumeables.cards < G.consumeables.config.card_limit)
     end,
 
     use = function(self, card, area, copier)
@@ -1193,6 +1185,7 @@ SMODS.Consumable {
 		}
 	},
 	loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
 		return { vars = { 
 			card.ability.extra.rounds_required,
 			card.ability.extra.rounds_held
@@ -1579,6 +1572,7 @@ SMODS.Consumable {
 		}
 	},
 	loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.e_ele_iridescent
 		return { vars = { 
 			card.ability.extra.rounds_required,
 			card.ability.extra.rounds_held
@@ -1694,6 +1688,7 @@ SMODS.Consumable {
     set = "Spectral", 
 	atlas = "metals",
     hidden = true,
+    select_card = "consumeables",
     soul_set = 'Metal',
     pos = { x = 7, y = 2 },
 	config = {
@@ -1768,7 +1763,6 @@ SMODS.Booster {
     pos = { x = 0, y = 3 },
     config = { extra = 2, choose = 1 },
     group_key = "k_metal_pack",
-    draw_hand = true,
     loc_vars = function(self, info_queue, card)
         local cfg = (card and card.ability) or self.config
         return {
@@ -1778,7 +1772,7 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
+            ease_background_colour { new_colour = G.C.UI.TEXT_INACTIVE, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
     create_card = function(self, card, i)
         return {
@@ -1800,7 +1794,6 @@ SMODS.Booster {
     pos = { x = 1, y = 3 },
     config = { extra = 2, choose = 1 },
     group_key = "k_metal_pack",
-    draw_hand = true,
     loc_vars = function(self, info_queue, card)
         local cfg = (card and card.ability) or self.config
         return {
@@ -1810,7 +1803,7 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
+            ease_background_colour { new_colour = G.C.UI.TEXT_INACTIVE, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
     create_card = function(self, card, i)
         return {
@@ -1832,7 +1825,6 @@ SMODS.Booster {
     pos = { x = 2, y = 3 },
     config = { extra = 2, choose = 1 },
     group_key = "k_metal_pack",
-    draw_hand = true,
     loc_vars = function(self, info_queue, card)
         local cfg = (card and card.ability) or self.config
         return {
@@ -1842,7 +1834,7 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
+            ease_background_colour { new_colour = G.C.UI.TEXT_INACTIVE, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
     create_card = function(self, card, i)
         return {
@@ -1864,7 +1856,6 @@ SMODS.Booster {
     pos = { x = 3, y = 3 },
     config = { extra = 2, choose = 1 },
     group_key = "k_metal_pack",
-    draw_hand = true,
     loc_vars = function(self, info_queue, card)
         local cfg = (card and card.ability) or self.config
         return {
@@ -1874,7 +1865,7 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
+            ease_background_colour { new_colour = G.C.UI.TEXT_INACTIVE, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
     create_card = function(self, card, i)
         return {
@@ -1896,7 +1887,6 @@ SMODS.Booster {
     pos = { x = 4, y = 3 },
     config = { extra = 4, choose = 1 },
     group_key = "k_metal_pack",
-    draw_hand = true,
     loc_vars = function(self, info_queue, card)
         local cfg = (card and card.ability) or self.config
         return {
@@ -1906,7 +1896,7 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
+            ease_background_colour { new_colour = G.C.UI.TEXT_INACTIVE, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
     create_card = function(self, card, i)
         return {
@@ -1928,7 +1918,6 @@ SMODS.Booster {
     pos = { x = 5, y = 3 },
     config = { extra = 4, choose = 1 },
     group_key = "k_metal_pack",
-    draw_hand = true,
     loc_vars = function(self, info_queue, card)
         local cfg = (card and card.ability) or self.config
         return {
@@ -1938,7 +1927,7 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
+            ease_background_colour { new_colour = G.C.UI.TEXT_INACTIVE, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
     create_card = function(self, card, i)
         return {
@@ -1960,7 +1949,6 @@ SMODS.Booster {
     pos = { x = 6, y = 3 },
     config = { extra = 4, choose = 2 },
     group_key = "k_metal_pack",
-    draw_hand = true,
     loc_vars = function(self, info_queue, card)
         local cfg = (card and card.ability) or self.config
         return {
@@ -1970,7 +1958,7 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.2), contrast = 3 }
+            ease_background_colour { new_colour = G.C.UI.TEXT_INACTIVE, special_colour = darken(G.C.METAL, 0.2), contrast = 3 }
         end,
     create_card = function(self, card, i)
         return {
@@ -1992,7 +1980,6 @@ SMODS.Booster {
     pos = { x = 7, y = 3 },
     config = { extra = 4, choose = 2 },
     group_key = "k_metal_pack",
-    draw_hand = true,
     loc_vars = function(self, info_queue, card)
         local cfg = (card and card.ability) or self.config
         return {
@@ -2002,7 +1989,7 @@ SMODS.Booster {
     end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.METAL)
-            ease_background_colour { new_colour = G.C.METAL, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
+            ease_background_colour { new_colour = G.C.UI.TEXT_INACTIVE, special_colour = darken(G.C.METAL, 0.5), contrast = 3 }
         end,
     create_card = function(self, card, i)
         return {
