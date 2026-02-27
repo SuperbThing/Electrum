@@ -128,12 +128,18 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.joker_main then
+            local base_mult = (card and card.ability and card.ability.extra and card.ability.extra.mult)
+                or self.config.extra.mult or 0
             local cardboard_tal = 0
-            for _, playing_card in ipairs(G.playing_cards) do
-                if SMODS.has_enhancement(playing_card, 'm_ele_cardboard') then cardboard_tal = cardboard_tal + 1 end
+            if G.playing_cards then
+                for _, playing_card in ipairs(G.playing_cards) do
+                    if SMODS.has_enhancement(playing_card, 'm_ele_cardboard') then
+                        cardboard_tal = cardboard_tal + 1
+                    end
+                end
             end
             return {
-                mult = base_mult * cardboard_tal,
+                mult = base_mult * cardboard_tal
             }
         end
     end,

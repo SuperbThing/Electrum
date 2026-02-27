@@ -46,8 +46,7 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
     if (tinted.g > 0.0 || tinted.g < 0.0) {
         tintedVec -= vec3(0.33, 0.56, 0.5);
     }
-
-
+    
     tex = vec4(tintedVec, tex.a);
 
     // Mix with base texture

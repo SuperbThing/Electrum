@@ -205,7 +205,7 @@ SMODS.Consumable {
 			rounds_held = 0,
 			charged = false,
 			last_round = -1,
-			metals = 2,
+			metals = 1,
 		}
 	},
 	loc_vars = function(self, info_queue, card)
@@ -215,23 +215,18 @@ SMODS.Consumable {
 			card.ability.extra.metals
 		} }
 	end,
-
     can_use = function(self, card)
         return card.ability.extra.charged
-			and (G.consumeables and #G.consumeables.cards < G.consumeables.config.card_limit)
     end,
-
     use = function(self, card, area, copier)
-        for i = 1, math.min(card.ability.extra.metals, G.consumeables.config.card_limit - #G.consumeables.cards) do
+        for i = 1, card.ability.extra.metals do
             G.E_MANAGER:add_event(Event({
                 trigger = 'after',
                 delay = 0.4,
                 func = function()
-                    if G.consumeables.config.card_limit > #G.consumeables.cards then
-                        play_sound('timpani')
-                        SMODS.add_card({ set = 'Metal' })
-                        card:juice_up(0.3, 0.5)
-                    end
+                    play_sound('timpani')
+                    SMODS.add_card({ set = 'Metal', edition = 'e_negative' })
+                    card:juice_up(0.3, 0.5)
                     return true
                 end
             }))
@@ -530,7 +525,7 @@ SMODS.Consumable {
 			rounds_held = 0,
 			charged = false,
 			last_round = -1,
-			Tarots = 1,
+			Tarots = 2,
 		}
 	},
 	loc_vars = function(self, info_queue, card)

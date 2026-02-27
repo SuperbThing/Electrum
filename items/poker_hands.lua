@@ -1,21 +1,39 @@
+
 SMODS.PokerHandPart {
     key = "blaze",
-    func = function(hand)
-        local ret = {}
+    func = function (hand)
         local minimum = 5
-        if next(SMODS.find_card('j_four_fingers')) then minimum = 4 end -- four fingers compat
+
+        if next(SMODS.find_card('j_four_fingers')) then
+            minimum = 4
+        end
 
         if #hand < minimum then return {} end
 
-        for _, playing_card in ipairs(hand) do
-            if playing_card:is_face() then ret[#ret + 1] = playing_card end
+        local track_ranks = {}
+
+        for _,card in ipairs(hand) do
+            local rank = card:get_id()
+            track_ranks[rank] = track_ranks[rank] or {}
+            table.insert(track_ranks[rank], card)
         end
 
-        if #ret < minimum then return {} end
-        return {ret,}
+        if not (
+            -- A rank is not tracked if the rank is not in the hand
+            track_ranks[13]     -- kings
+            and track_ranks[12] -- queens
+            and track_ranks[11] -- come on what do you think this is
+        ) then return {} end
+
+        local scoring_cards = SMODS.merge_lists{
+            track_ranks[13],
+            track_ranks[12],
+            track_ranks[11]
+        }
+
+        return {scoring_cards}
     end
 }
-
 SMODS.PokerHand {
     key = "blaze",
     mult = 4,

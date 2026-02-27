@@ -22,6 +22,13 @@ return {
                     "{C:attention}+#1#{} Amp",
                 },
             },
+            e_ele_tinted = {
+                name = "Tinted",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult",
+                    "{X:chips,C:white}X#2#{} Chips",
+                },
+            },
         },
         Blind = {
             bl_ele_candle_final = {
@@ -245,9 +252,8 @@ return {
             c_ele_copper = {
                 name = "Copper",
                 text = {
-                    "Creates up to {C:attention}#3#{} random",
-                    " {C:metal}Metal{} cards after",
-                    "being held for {C:attention}#1#{} rounds",
+                    "Creates a {C:dark_edition}Negative{} {C:metal}Metal{} card",
+                    "after being held for {C:attention}#1#{} rounds",
                     "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
             },
@@ -460,6 +466,13 @@ return {
                     "and a copy of {C:metal,T:c_ele_copper}#2#",
                 },
             },
+            b_ele_infrared = {
+                name = "Infrared Deck",
+                text = {
+                    "{C:attention}Amp{} now exponentiates {C:mult}Mult{}",
+                    "{C:chips}Chips{} are divided by {C:red}#1#{}",
+                },
+            },
         },
         Planet = { 
             c_ele_proximab = {
@@ -526,12 +539,14 @@ return {
         labels = {
             ele_Metal = "Metal",
             ele_iridescent = "Iridescent",
+            ele_tinted = "Tinted",
         },
         dictionary = {
         k_metal = "Metal",
         b_metal_cards = "Metal Cards",
         metal_ready = "Ready!",
 		scepter_up = '+X0.1',
+		balanced = 'Balanced!',
 		drank = 'Drank!',
 		eaten = 'Eaten!',
 		amp_loss = '-0.1 Amp',
