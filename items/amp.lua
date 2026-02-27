@@ -37,9 +37,9 @@ SMODS.Scoring_Calculation{
 	end,
     parameters = {'chips', 'mult', SMODS.current_mod.prefix..'_amp'},
     replace_ui = function (self) 
-        local w = 1.28
-        local h = 0.75
-		local scale = 0.3
+        local w = 1.27
+        local h = 0.82
+		local scale = 0.33
         return
         {n=G.UIT.R, config={align = "cm", minh = 1, padding = 0.1}, nodes={
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
@@ -88,12 +88,12 @@ SMODS.Scoring_Calculation{
 SMODS.Scoring_Calculation{
     key = "amp_infrared",
     func = function(self, chips, mult, flames)
-	    return chips * (mult ^ SMODS.get_scoring_parameter(self.mod.prefix..'_amp', flames))
+	    return chips * mult * (SMODS.get_scoring_parameter(self.mod.prefix..'_amp', flames) ^ 2)
 	end,
     parameters = {'chips', 'mult', SMODS.current_mod.prefix..'_amp'},
     replace_ui = function (self) 
-        local w = 1.28
-        local h = 0.75
+        local w = 1.0
+        local h = 0.82
 		local scale = 0.3
         return
         {n=G.UIT.R, config={align = "cm", minh = 1, padding = 0.1}, nodes={
@@ -112,9 +112,6 @@ SMODS.Scoring_Calculation{
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
                 SMODS.GUI.operator(0.3)
             }},
-			{n=G.UIT.C, config={align = "cl", id = 'hand_operator_container'}, nodes={
-				{n=G.UIT.T, config={text = "(", scale = 0.6, colour = G.C.WHITE, shadow = true}},
-			}},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
                 {n=G.UIT.R, config={align = 'cm', id = 'hand_mult'}, nodes={
                     SMODS.GUI.score_container({
@@ -127,7 +124,7 @@ SMODS.Scoring_Calculation{
                 }},
             }},
 			{n=G.UIT.C, config={align = "cl", id = 'hand_operator_container'}, nodes={
-				{n=G.UIT.T, config={text = "^", scale = 0.6, colour = G.C.DARK_EDITION, shadow = true}},
+				{n=G.UIT.T, config={text = "X", scale = 0.6, colour = G.C.ORANGE, shadow = true}},
 			}},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
                 {n=G.UIT.R, config={align = 'cl', id = 'hand_ele_amp'}, nodes={
@@ -141,7 +138,7 @@ SMODS.Scoring_Calculation{
                 }},
             }},
 			{n=G.UIT.C, config={align = "cl", id = 'hand_operator_container'}, nodes={
-				{n=G.UIT.T, config={text = ")", scale = 0.6, colour = G.C.WHITE, shadow = true}},
+				{n=G.UIT.T, config={text = "^2", scale = 0.6, colour = G.C.DARK_EDITION, shadow = true}},
 			}},
 	}}
     end
@@ -152,11 +149,3 @@ function Game:start_run(args)
     SMODS.set_scoring_calculation("ele_amp")
     return ret
 end
--- function set_current_amp_operator(operator)
---     SMODS.calculate_context({ amp_operator_set = true, amp_operator_key = operator})
---     SMODS.set_scoring_calculation(operator)
---     G.GAME.ampop = operator
--- end
--- function get_current_amp_operator()
---     return G.GAME.ampop
--- end
