@@ -431,14 +431,15 @@ SMODS.Joker {
     cost = 6,
     atlas = 'jokers',
     pos = { x = 0, y = 3 },
-    config = { extra = { amp = 0.1 } },
+    config = { extra = { amp = 0.1, dollars = 2 } },
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.amp, card.ability.extra.amp * math.max(0, (G.GAME.dollars / 2 or 0) + (G.GAME.dollar_buffer or 0)) } }
+        return { vars = { card.ability.extra.amp, card.ability.extra.dollars, card.ability.extra.amp * math.max(0, (G.GAME.dollars / 2 or 0) + (G.GAME.dollar_buffer or 0)) } }
     end,
     calculate = function(self, card, context)
         if context.joker_main then
             return {
-                amp = card.ability.extra.amp * math.max(0, (G.GAME.dollars + (G.GAME.dollar_buffer or 0)))
+                mult = card.ability.extra.mult *
+                    math.floor(((G.GAME.dollars or 0) + (G.GAME.dollar_buffer or 0)) / card.ability.extra.dollars)
             }
         end
     end,
