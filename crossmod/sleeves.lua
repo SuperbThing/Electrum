@@ -14,12 +14,12 @@ CardSleeves.Sleeve {
         local key
         if self.get_current_deck_key() == "b_ele_infrared" then
             key = self.key .. "_alt"
-            self.config = { extra = {balance = 25, ante_scaling = 1.5, chops = 25} }
-            vars = { self.config.extra.balance,  self.config.extra.chops, self.config.extra.ante_scaling }
+            self.config = { extra = {balance = 50, chops = 25} }
+            vars = { self.config.extra.balance,  self.config.extra.chops }
         else
             key = self.key
-            self.config = { extra = {balance = 20, ante_scaling = 1.5, chops = 50} }
-            vars = { self.config.extra.balance,  self.config.extra.chops, self.config.extra.ante_scaling }
+            self.config = { extra = {balance = 25, chops = 50} }
+            vars = { self.config.extra.balance,  self.config.extra.chops }
         end
         return { key = key, vars = vars }
     end,
@@ -88,9 +88,6 @@ CardSleeves.Sleeve {
             delay(0.3)
             return true
         end
-    end,
-    apply = function(self, sleeve)
-        G.GAME.starting_params.ante_scaling = G.GAME.starting_params.ante_scaling * self.config.extra.ante_scaling
     end,
 }
 CardSleeves.Sleeve {
