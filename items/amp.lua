@@ -23,7 +23,7 @@ SMODS.Scoring_Parameter({
         end
         if key == 'xamp' and amount then
             if effect.card and effect.card ~= scored_card then juice_card(effect.card) end
-            self:modify(self.current * (amount))
+            self:modify(self.current * (amount) - 1)
             card_eval_status_text(scored_card, 'extra', nil, percent, nil,
                 {sound = "ele_sfx_xamp", message = localize{type = 'variable', key = amount > 0 and 'a_chips' or 'a_chips_minus', vars = {'X'..amount}}, colour = self.colour})
             return true

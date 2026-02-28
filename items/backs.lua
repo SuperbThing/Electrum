@@ -25,7 +25,7 @@ SMODS.Back {
             local balanced_amp = current_amp + ((balance * diff_amp) / 200)
             
             mult = mod_mult(balanced_mult)
-            amp_param:modify(balanced_amp)
+            amp_param:modify(balanced_amp - 1)
 
             update_hand_text({delay = 0}, { mult = balanced_mult, amp = balanced_amp })
             G.E_MANAGER:add_event(Event({
