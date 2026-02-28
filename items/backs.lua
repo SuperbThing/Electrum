@@ -79,6 +79,9 @@ SMODS.Back {
             return true
         end
     end,
+    apply = function(self, back)
+        G.GAME.modifiers.scaling = (G.GAME.modifiers.scaling or 1) + 1
+    end,
 }
 
 SMODS.Back {
