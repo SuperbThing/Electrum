@@ -5,7 +5,7 @@ SMODS.PokerHandPart {
         if next(SMODS.find_card('j_four_fingers')) then
             minimum = 4
         end
-        if #hand ~= minimum then return {} end
+        if #hand < minimum then return {} end
         local scoring_cards = {}
         for _, card in ipairs(hand) do
             local rank = card:get_id()
