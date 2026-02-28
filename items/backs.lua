@@ -9,7 +9,7 @@ SMODS.Back {
     key = "infrared",
     atlas = "backs",
     pos = { x = 0, y = 0 },
-    config = { ante_scaling = 1.5, extra = { balance = 20, chops = 50 } },
+    config = { extra = { balance = 20, ante_scaling = 1.5, chops = 50 } },
     loc_vars = function(self, info_queue, back)
         return { vars = { self.config.extra.balance, self.config.extra.chops, self.config.ante_scaling } }
     end,
