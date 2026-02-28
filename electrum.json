@@ -6,7 +6,7 @@
   "description": "A mod that adds a 3rd multiplier, consumable type and more!",
   "prefix": "ele",
   "main_file": "main.lua",
-  "priority": -1,
+  "priority": 1,
   "badge_colour": "a39653",
   "version": "1.3.0",
   "dependencies": ["Steamodded (>=1.0.0~BETA-1221a)"]

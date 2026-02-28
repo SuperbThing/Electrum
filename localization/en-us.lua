@@ -469,8 +469,11 @@ return {
             b_ele_infrared = {
                 name = "Infrared Deck",
                 text = {
-                    "{C:attention}Amp{} now exponentiates {C:mult}Mult{}",
-                    "{C:chips}Chips{} are divided by {C:red}#1#{}",
+                    "Balance {C:mult}Mult{} and {C:attention}Amp{}",
+                    "by {C:ele_mump}#1#%{} when calculating",
+                    "score for played hand",
+                    "{C:chips}Chips{} are reduced by {C:red}#2#%{}",
+                    "{C:red}X#3#{} base Blind size",
                 },
             },
         },
@@ -510,6 +513,52 @@ return {
                     "becomes {C:dark_edition}Iridescent",
                 },
             },
+            tag_ele_tint = {
+                name = "Tinted Tag",
+                text = {
+                    "Next base edition shop",
+                    "Joker is free and",
+                    "becomes {C:dark_edition}Tinted",
+                },
+            },
+        },
+        Sleeve = {
+            sleeve_ele_infrared = {
+                name = "Infrared Sleeve",
+                text = {
+                    "Balance {C:mult}Mult{} and {C:attention}Amp{}",
+                    "by {C:ele_mump}#1#%{} when calculating",
+                    "score for played hand",
+                    "{C:chips}Chips{} are reduced by {C:red}#2#%{}",
+                    "{C:red}X#3#{} base Blind size",
+                },
+            },
+            sleeve_ele_infrared_alt = {
+                name = "Infrared Sleeve",
+                text = {
+                    "Balance {C:mult}Mult{} and {C:attention}Amp{}",
+                    "by {C:ele_mump}#1#%{} when calculating",
+                    "score for played hand",
+                    "{C:chips}Chips{} are reduced by {C:red}#2#%{}",
+                    "{C:red}X#3#{} base Blind size",
+                },
+            },
+            sleeve_ele_forge = {
+                name = "Forge Sleeve",
+                text = {
+                    "Start run with the",
+                    "{C:metal,T:v_ele_metal_merchant}#1#{} voucher",
+                    "and a copy of {C:metal,T:c_ele_copper}#2#",
+                },
+            },
+            sleeve_ele_forge_alt = {
+                name = "Forge Sleeve",
+                text = {
+                    "Start run with the",
+                    "{C:metal,T:v_ele_metal_tycoon}#1#{} voucher",
+                    "and 2 copies of {C:metal,T:c_ele_copper}#2#",
+                },
+            },
         },
         Other = {
             p_ele_metal_normal = {
@@ -546,7 +595,7 @@ return {
         b_metal_cards = "Metal Cards",
         metal_ready = "Ready!",
 		scepter_up = '+X0.1',
-		balanced = 'Balanced!',
+		balanced = 'Balanced',
 		drank = 'Drank!',
 		eaten = 'Eaten!',
 		amp_loss = '-0.1 Amp',
@@ -562,10 +611,15 @@ return {
                 "5 Face cards with all",
                 "cards sharing the same suit",
             },
+            ele_blaze_spectrum = {
+                "5 Face cards, each with",
+                "a different suit",
+            },
         },
         poker_hands = {
             ele_blaze = "Blaze",
             ele_blaze_flush = "Blaze Flush",
+            ele_blaze_spectrum = "Blaze Spectrum",
         }
     }
 }

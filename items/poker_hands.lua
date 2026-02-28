@@ -1,37 +1,21 @@
-
 SMODS.PokerHandPart {
     key = "blaze",
     func = function (hand)
         local minimum = 5
-
         if next(SMODS.find_card('j_four_fingers')) then
             minimum = 4
         end
-
-        if #hand < minimum then return {} end
-
-        local track_ranks = {}
-
-        for _,card in ipairs(hand) do
+        if #hand ~= minimum then return {} end
+        local scoring_cards = {}
+        for _, card in ipairs(hand) do
             local rank = card:get_id()
-            track_ranks[rank] = track_ranks[rank] or {}
-            table.insert(track_ranks[rank], card)
+            -- Reject immediately if any card is NOT J, Q, or K
+            if rank ~= 11 and rank ~= 12 and rank ~= 13 then
+                return {}
+            end
+            table.insert(scoring_cards, card)
         end
-
-        if not (
-            -- A rank is not tracked if the rank is not in the hand
-            track_ranks[13]     -- kings
-            and track_ranks[12] -- queens
-            and track_ranks[11] -- come on what do you think this is
-        ) then return {} end
-
-        local scoring_cards = SMODS.merge_lists{
-            track_ranks[13],
-            track_ranks[12],
-            track_ranks[11]
-        }
-
-        return {scoring_cards}
+        return { scoring_cards }
     end
 }
 SMODS.PokerHand {
@@ -40,6 +24,7 @@ SMODS.PokerHand {
     chips = 25,
     l_mult = 3,
     l_chips = 15,
+    visible = false,
     example = {
         { 'H_K', true },
         { 'C_Q', true },
@@ -53,10 +38,11 @@ SMODS.PokerHand {
 }
 SMODS.PokerHand {
     key = "blaze_flush",
-    mult = 14,
-    chips = 120,
+    mult = 10,
+    chips = 100,
     l_mult = 4,
     l_chips = 30,
+    visible = false,
     example = {
         { 'D_J', true },
         { 'D_Q', true },

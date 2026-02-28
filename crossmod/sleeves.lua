@@ -1,21 +1,31 @@
-SMODS.Atlas{
-	key = "backs",
-	path = "back.png",
-	px = 71,
-	py = 95
+SMODS.Atlas {
+    key = "sleeves",
+    path = "sleeves.png",
+    px = 73,
+    py = 95
 }
 
-SMODS.Back {
+CardSleeves.Sleeve {
     key = "infrared",
-    atlas = "backs",
+    name = "Infrared Sleeve",
+    atlas = "sleeves",
     pos = { x = 0, y = 0 },
-    config = { ante_scaling = 1.5, extra = { balance = 20, chops = 50 } },
-    loc_vars = function(self, info_queue, back)
-        return { vars = { self.config.extra.balance, self.config.extra.chops, self.config.ante_scaling } }
+    loc_vars = function(self)
+        local key
+        if self.get_current_deck_key() == "b_ele_infrared" then
+            key = self.key .. "_alt"
+            self.config = { extra = {balance = 25, ante_scaling = 1.5, chops = 25} }
+            vars = { self.config.extra.balance,  self.config.extra.chops, self.config.extra.ante_scaling }
+        else
+            key = self.key
+            self.config = { extra = {balance = 20, ante_scaling = 1.5, chops = 50} }
+            vars = { self.config.extra.balance,  self.config.extra.chops, self.config.extra.ante_scaling }
+        end
+        return { key = key, vars = vars }
     end,
-    calculate = function(self, back, context)
+    calculate = function(self, sleeve, context)
         if context.final_scoring_step then
-            -- going all in on the locals lol
+            -- copy paste from infrared deck
             local amp_param = SMODS.Scoring_Parameters[self.mod.prefix..'_amp']
             local current_amp = amp_param.current
             local balance = self.config.extra.balance
@@ -79,21 +89,28 @@ SMODS.Back {
             return true
         end
     end,
-    apply = function(self, back)
+    apply = function(self, sleeve)
         G.GAME.starting_params.ante_scaling = G.GAME.starting_params.ante_scaling * self.config.extra.ante_scaling
     end,
 }
-
-SMODS.Back {
+CardSleeves.Sleeve {
     key = "forge",
-    atlas = "backs",
+    name = "Forge Sleeve",
+    atlas = "sleeves",
     pos = { x = 1, y = 0 },
-    config = { voucher = 'v_ele_metal_merchant', consumables = { 'c_ele_copper' } },
-    loc_vars = function(self, info_queue, back)
-        return {
-            vars = { localize { type = 'name_text', key = self.config.voucher, set = 'Voucher' },
-                localize { type = 'name_text', key = self.config.consumables[1], set = 'Metal' }
-            }
-        }
+    loc_vars = function(self)
+        local key
+        if self.get_current_deck_key() == "b_ele_forge" then
+            key = self.key .. "_alt"
+            self.config = { voucher = "v_ele_metal_tycoon", consumables = { 'c_ele_copper', 'c_ele_copper' } }
+        else
+            key = self.key
+            self.config = { voucher = "v_ele_metal_merchant", consumables = { 'c_ele_copper'} }
+        end
+        local vars = { localize{type = 'name_text', key = self.config.voucher, set = 'Voucher'} }
+        if self.config.consumables then
+            vars[#vars+1] = localize{type = 'name_text', key = self.config.consumables[1], set = 'Metal'}
+        end
+        return { key = key, vars = vars }
     end,
 }

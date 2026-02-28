@@ -1416,7 +1416,7 @@ SMODS.Consumable {
 	config = {
         max_highlighted = 1,
 		extra = {
-			rounds_required = 2,
+			rounds_required = 3,
 			rounds_held = 0,
 			charged = false,
 			last_round = -1
@@ -1623,7 +1623,7 @@ SMODS.Consumable {
     pos = { x = 6, y = 2 },
 	config = {
 		extra = {
-			rounds_required = 5,
+			rounds_required = 6,
 			rounds_held = 0,
 			charged = false,
 			last_round = -1
