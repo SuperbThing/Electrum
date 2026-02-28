@@ -89,6 +89,9 @@ CardSleeves.Sleeve {
             return true
         end
     end,
+    apply = function(self, sleeve)
+        G.GAME.modifiers.scaling = (G.GAME.modifiers.scaling or 1) + 1
+    end,
 }
 CardSleeves.Sleeve {
     key = "forge",
