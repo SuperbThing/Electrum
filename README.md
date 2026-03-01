@@ -12,4 +12,4 @@ This mod currently adds:
 - 5 **blinds** (all are **showdown blinds**)
 - the **Blaze** (and blaze flush) poker hand, which is basically 5 face cards
 - and some other misc stuff like tarots, enhancements etc.
-<img width="1000" height="560" alt="Screenshot_12" src="https://github.com/user-attachments/assets/e4a07d89-3e39-4005-85a0-8e8ebac20567" />
+<img width="1024" height="568" alt="Screenshot_17" src="https://github.com/user-attachments/assets/0596a828-0e95-47a3-a582-1d41fac5b3aa" />
