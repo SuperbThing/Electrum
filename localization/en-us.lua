@@ -194,7 +194,7 @@ return {
                 name = "Stonks",
                 text = {
                     "{C:attention}+#1#{} Amp for",
-                    "each {C:money}$2{} you have",
+                    "each {C:money}$#2#{} you have",
                     "{C:inactive}(Currently {C:attention}+#2#{C:inactive} Amp)",
                 },
             },
@@ -285,7 +285,7 @@ return {
             c_ele_brass = {
                 name = "Brass",
                 text = {
-                    "Creates a {C:dark_edition}Negative{} {C:tarot}Tarot{} card",
+                    "Creates {C:attention}2{} {C:dark_edition}Negative{} {C:tarot}Tarot{} card",
                     "after being held for {C:attention}#1#{} rounds",
                     "{C:inactive}(Currently {}{C:attention}#2#{}{C:inactive}/#1# rounds){}",
                 },
@@ -469,12 +469,9 @@ return {
             b_ele_infrared = {
                 name = "Infrared Deck",
                 text = {
-                    "Balance {C:mult}Mult{} and {C:attention}Amp{}",
-                    "by {C:ele_mump}#1#%{} when calculating",
-                    "score for played hand",
-                    "{C:chips}Chips{} are reduced by {C:red}#2#%{}",
-                    "Required score scales",
-                    "faster for each {C:attention}Ante",
+                    "{C:ele_mump}Equalize{} {C:mult}Mult{} and {C:attention}Amp{}",
+                    "before scoring",
+                    "{C:chips}Chips{} are reduced by {C:red}#1#%{}",
                 },
             },
         },
@@ -527,23 +524,17 @@ return {
             sleeve_ele_infrared = {
                 name = "Infrared Sleeve",
                 text = {
-                    "Balance {C:mult}Mult{} and {C:attention}Amp{}",
-                    "by {C:ele_mump}#1#%{} when calculating",
-                    "score for played hand",
-                    "{C:chips}Chips{} are reduced by {C:red}#2#%{}",
-                    "Required score scales",
-                    "faster for each {C:attention}Ante",
+                    "{C:ele_mump}Equalize{} {C:mult}Mult{}",
+                    "and {C:attention}Amp{} before scoring",
+                    "{C:chips}Chips{} are reduced by {C:red}#1#%{}",
                 },
             },
             sleeve_ele_infrared_alt = {
                 name = "Infrared Sleeve",
                 text = {
-                    "Balance {C:mult}Mult{} and {C:attention}Amp{}",
-                    "by {C:ele_mump}#1#%{} when calculating",
-                    "score for played hand",
-                    "{C:chips}Chips{} are reduced by {C:red}#2#%{}",
-                    "Required score scales",
-                    "faster for each {C:attention}Ante",
+                    "{C:ele_mump}Equalize{} {C:mult}Mult{}, {C:chips}Chips{}",
+                    "and {C:attention}Amp{} before scoring",
+                    "{C:chips}Chips{} are reduced by {C:red}#1#%{}",
                 },
             },
             sleeve_ele_forge = {
@@ -598,7 +589,7 @@ return {
         b_metal_cards = "Metal Cards",
         metal_ready = "Ready!",
 		scepter_up = '+X0.1',
-		balanced = 'Balanced',
+		equalized = 'Equalized',
 		drank = 'Drank!',
 		eaten = 'Eaten!',
 		amp_loss = '-0.1 Amp',
