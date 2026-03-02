@@ -9,10 +9,6 @@ SMODS.Back {
     key = "infrared",
     atlas = "backs",
     pos = { x = 0, y = 0 },
-    config = { extra = { chops = 33 } },
-    loc_vars = function(self, info_queue, back)
-        return { vars = { self.config.extra.chops } }
-    end,
     calculate = function(self, back, context)
         if G.GAME.selected_sleeve == "sleeve_ele_infrared" then return end
         if context.initial_scoring_step then
@@ -62,24 +58,11 @@ SMODS.Back {
                 end)
             }))
             delay(0.8)
-        end        
-        
-        if context.final_scoring_step then
-            hand_chips = mod_chips(hand_chips-(hand_chips*(self.config.extra.chops/100)))
-            update_hand_text({delay = 0}, { chips = hand_chips })
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    play_sound('xchips', 0.94)
-                    return true
-                end
-            }))
-            delay(0.3)
-            return true
-        end
+        end       
     end,
-    -- apply = function(self, back)
-    --     G.GAME.modifiers.scaling = (G.GAME.modifiers.scaling or 1) + 1
-    -- end,
+    apply = function(self, back)
+        G.GAME.modifiers.scaling = (G.GAME.modifiers.scaling or 1) + 1
+    end,
 }
 
 SMODS.Back {

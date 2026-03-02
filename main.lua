@@ -7,6 +7,9 @@ SMODS.Atlas{
 
 G.C.AMP = HEX('fda200')
 G.C.METAL = HEX('d4b79b')
+-- G.C.INFRARED = HEX('FF822B')
+-- G.C.INFRASMA = HEX('e67b82')
+-- just incase i forget the hex codes
 SMODS.Gradient {
     key = 'mump',
     colours = {
@@ -31,6 +34,9 @@ assert(SMODS.load_file("items/tags.lua"))()
 
 if next(SMODS.find_mod("CardSleeves")) then
     assert(SMODS.load_file("crossmod/sleeves.lua"))()
+end
+if next(SMODS.find_mod("Maximus")) then
+    assert(SMODS.load_file("crossmod/maximus.lua"))()
 end
 
 -- if next(SMODS.find_mod("Bunco")) then

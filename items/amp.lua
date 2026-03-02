@@ -37,8 +37,8 @@ SMODS.Scoring_Calculation{
 	end,
     parameters = {'chips', 'mult', SMODS.current_mod.prefix..'_amp'},
     replace_ui = function (self) 
-        local w = 1.27
-        local h = 1
+        local w = 1.45
+        local h = 0.9
 		local scale = 0.35
         return
         {n=G.UIT.R, config={align = "cm", minh = 1, padding = 0.1}, nodes={
@@ -55,13 +55,13 @@ SMODS.Scoring_Calculation{
                 }},
             }},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
-                SMODS.GUI.operator(0.3)
+                SMODS.GUI.operator(scale*0.8),
             }},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
                 {n=G.UIT.R, config={align = 'cm', id = 'hand_mult'}, nodes={
                     SMODS.GUI.score_container({
                         type = 'mult',
-                        align = 'cm',
+                        align = 'cl',
                         w = w,
                         h = h,
 						scale = scale,
@@ -69,20 +69,20 @@ SMODS.Scoring_Calculation{
                 }},
             }},
 			{n=G.UIT.C, config={align = "cl", id = 'hand_operator_container'}, nodes={
-				{n=G.UIT.T, config={text = "X", scale = 0.6, colour = G.C.ORANGE, shadow = true}},
+				{n=G.UIT.T, config={text = "X", scale = scale*1.25, colour = G.C.AMP, shadow = true}},
 			}},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
-			{n=G.UIT.R, config={align = 'cl', id = 'hand_ele_amp'}, nodes={
-				SMODS.GUI.score_container({
-					type = 'ele_amp',
-					align = 'cl',
-					w = w,
-					h = h,
-					scale = scale
-				})
-			}},
-        }},
-	}}
+                {n=G.UIT.R, config={align = 'cl', id = 'hand_ele_amp'}, nodes={
+                    SMODS.GUI.score_container({
+                        type = 'ele_amp',
+                        align = 'cl',
+                        w = 0.9,
+                        h = h,
+                        scale = scale/1.2
+                    })
+                }},
+            }},
+        }}
     end
 }
 local start_run_ref = Game.start_run

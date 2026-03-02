@@ -9,7 +9,6 @@ CardSleeves.Sleeve {
     key = "infrared",
     name = "Infrared Sleeve",
     atlas = "sleeves",
-    config = {extra = { chops = 33 } },
     pos = { x = 0, y = 0 },
     loc_vars = function(self)
         local key
@@ -18,8 +17,7 @@ CardSleeves.Sleeve {
         else
             key = self.key
         end
-        local vars = { self.config.extra.chops }
-        return { key = key, vars = vars }
+        return { key = key }
     end,
     calculate = function(self, sleeve, context)
         if context.initial_scoring_step then
@@ -121,20 +119,12 @@ CardSleeves.Sleeve {
                     end)
                 }))
                 delay(0.8)
-            end 
-        end       
-        if context.final_scoring_step and self.get_current_deck_key() ~= "b_ele_infrared" then
-            hand_chips = mod_chips(hand_chips-(hand_chips*(self.config.extra.chops/100)))
-            update_hand_text({delay = 0}, { chips = hand_chips })
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    play_sound('xchips', 0.94)
-                    return true
-                end
-            }))
-            delay(0.3)
-            return true
+                return true
+            end
         end
+    end,
+    apply = function(self, back)
+        G.GAME.modifiers.scaling = (G.GAME.modifiers.scaling or 1) + 1
     end,
 }
 CardSleeves.Sleeve {

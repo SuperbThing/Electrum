@@ -195,7 +195,7 @@ return {
                 text = {
                     "{C:attention}+#1#{} Amp for",
                     "each {C:money}$#2#{} you have",
-                    "{C:inactive}(Currently {C:attention}+#2#{C:inactive} Amp)",
+                    "{C:inactive}(Currently {C:attention}+#3#{C:inactive} Amp)",
                 },
             },
             j_ele_majestic = {
@@ -471,7 +471,8 @@ return {
                 text = {
                     "{C:ele_mump}Equalize{} {C:mult}Mult{} and {C:attention}Amp{}",
                     "before scoring",
-                    "{C:chips}Chips{} are reduced by {C:red}#1#%{}",
+                    "Required score scales",
+                    "faster for each {C:attention}Ante",
                 },
             },
         },
@@ -524,9 +525,10 @@ return {
             sleeve_ele_infrared = {
                 name = "Infrared Sleeve",
                 text = {
-                    "{C:ele_mump}Equalize{} {C:mult}Mult{}",
-                    "and {C:attention}Amp{} before scoring",
-                    "{C:chips}Chips{} are reduced by {C:red}#1#%{}",
+                    "{C:ele_mump}Equalize{} {C:mult}Mult{} and {C:attention}Amp{}",
+                    "before scoring",
+                    "Required score scales",
+                    "faster for each {C:attention}Ante",
                 },
             },
             sleeve_ele_infrared_alt = {
@@ -534,7 +536,6 @@ return {
                 text = {
                     "{C:ele_mump}Equalize{} {C:mult}Mult{}, {C:chips}Chips{}",
                     "and {C:attention}Amp{} before scoring",
-                    "{C:chips}Chips{} are reduced by {C:red}#1#%{}",
                 },
             },
             sleeve_ele_forge = {
