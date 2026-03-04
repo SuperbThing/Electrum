@@ -5,9 +5,10 @@ SMODS.Scoring_Calculation{
 	end,
     parameters = {'chips', 'mult', SMODS.current_mod.prefix..'_amp'},
     replace_ui = function (self) 
-        local w = 1.45
-        local h = 0.8
-		local scale = 0.3
+        local down = 0.75
+        local w = 2
+        local h = 1
+		local scale = 0.4
         return
         {n=G.UIT.R, config={align = "cm", minh = 1, padding = 0.1}, nodes={
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
@@ -16,41 +17,41 @@ SMODS.Scoring_Calculation{
                         type = 'chips',
                         text = 'chip_text',
                         align = 'cr',
-                        w = w,
-                        h = h,
-						scale = scale,
+                        w = w * down,
+                        h = h * down,
+						scale = scale * down,
                     })
                 }},
             }},
-			{n=G.UIT.C, config={align = "cl", id = 'hand_operator_container'}, nodes={
-				{n=G.UIT.T, config={text = "^", scale = scale*1.6, colour = G.C.UI_MULT, shadow = true}},
+			{n=G.UIT.C, config={align = "cm", id = 'hand_operator_container'}, nodes={
+				{n=G.UIT.T, config={text = "^", scale = scale * 1.25 * down, colour = G.C.UI_MULT, shadow = true}},
 			}},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
                 {n=G.UIT.R, config={align = 'cm', id = 'hand_mult'}, nodes={
                     SMODS.GUI.score_container({
                         type = 'mult',
                         align = 'cl',
-                        w = w,
-                        h = h,
-						scale = scale,
+                        w = w * down,
+                        h = h * down,
+						scale = scale * down,
                     })
                 }},
             }},
 			{n=G.UIT.C, config={align = "cl", id = 'hand_operator_container'}, nodes={
-				{n=G.UIT.T, config={text = "X", scale = scale*1.25, colour = G.C.AMP, shadow = true}},
+				{n=G.UIT.T, config={text = "X", scale = scale * 1.25 * down, colour = G.C.AMP, shadow = true}},
 			}},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
-                {n=G.UIT.R, config={align = 'cl', id = 'hand_ele_amp'}, nodes={
-                    SMODS.GUI.score_container({
-                        type = 'ele_amp',
-                        align = 'cl',
-                        w = 0.9,
-                        h = h,
-                        scale = scale
-                    })
-                }},
-            }},
-        }}
+			{n=G.UIT.R, config={align = 'cl', id = 'hand_ele_amp'}, nodes={
+				SMODS.GUI.score_container({
+					type = 'ele_amp',
+					align = 'cl',
+					w = 0.75,
+					h = h * down,
+					scale = scale * 0.75 * 0.75
+				})
+			}},
+        }},
+	}}
     end
 }
 SMODS.Back:take_ownership('mxms_nuclear',

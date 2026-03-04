@@ -23,7 +23,7 @@ SMODS.Scoring_Parameter({
         end
         if key == 'xamp' and amount then
             if effect.card and effect.card ~= scored_card then juice_card(effect.card) end
-            self:modify(self.current * (amount) - 1)
+            self:modify(self.current * (amount))
             card_eval_status_text(scored_card, 'extra', nil, percent, nil,
                 {sound = "ele_sfx_xamp", message = localize{type = 'variable', key = amount > 0 and 'a_chips' or 'a_chips_minus', vars = {'X'..amount}}, colour = self.colour})
             return true
@@ -37,9 +37,10 @@ SMODS.Scoring_Calculation{
 	end,
     parameters = {'chips', 'mult', SMODS.current_mod.prefix..'_amp'},
     replace_ui = function (self) 
-        local w = 1.45
-        local h = 0.9
-		local scale = 0.35
+        local down = 0.75
+        local w = 2
+        local h = 1
+		local scale = 0.4
         return
         {n=G.UIT.R, config={align = "cm", minh = 1, padding = 0.1}, nodes={
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
@@ -48,41 +49,41 @@ SMODS.Scoring_Calculation{
                         type = 'chips',
                         text = 'chip_text',
                         align = 'cr',
-                        w = w,
-                        h = h,
-						scale = scale,
+                        w = w * down,
+                        h = h * down,
+						scale = scale * down,
                     })
                 }},
             }},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
-                SMODS.GUI.operator(scale*0.8),
+                SMODS.GUI.operator(scale * down)
             }},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
                 {n=G.UIT.R, config={align = 'cm', id = 'hand_mult'}, nodes={
                     SMODS.GUI.score_container({
                         type = 'mult',
                         align = 'cl',
-                        w = w,
-                        h = h,
-						scale = scale,
+                        w = w * down,
+                        h = h * down,
+						scale = scale * down,
                     })
                 }},
             }},
 			{n=G.UIT.C, config={align = "cl", id = 'hand_operator_container'}, nodes={
-				{n=G.UIT.T, config={text = "X", scale = scale*1.25, colour = G.C.AMP, shadow = true}},
+				{n=G.UIT.T, config={text = "X", scale = scale * 1.25 * down, colour = G.C.AMP, shadow = true}},
 			}},
             {n=G.UIT.C, config={align = 'cm'}, nodes = { 
-                {n=G.UIT.R, config={align = 'cl', id = 'hand_ele_amp'}, nodes={
-                    SMODS.GUI.score_container({
-                        type = 'ele_amp',
-                        align = 'cl',
-                        w = 0.9,
-                        h = h,
-                        scale = scale/1.2
-                    })
-                }},
-            }},
-        }}
+			{n=G.UIT.R, config={align = 'cl', id = 'hand_ele_amp'}, nodes={
+				SMODS.GUI.score_container({
+					type = 'ele_amp',
+					align = 'cl',
+					w = 0.75,
+					h = h * down,
+					scale = scale * 0.75 * 0.75
+				})
+			}},
+        }},
+	}}
     end
 }
 local start_run_ref = Game.start_run

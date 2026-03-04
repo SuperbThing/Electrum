@@ -6,11 +6,11 @@ SMODS.Atlas{
 }
 
 SMODS.Back {
-    key = "infrared",
+    key = "lightning",
     atlas = "backs",
     pos = { x = 0, y = 0 },
     calculate = function(self, back, context)
-        if G.GAME.selected_sleeve == "sleeve_ele_infrared" then return end
+        if G.GAME.selected_sleeve == "sleeve_ele_lightning" then return end
         if context.initial_scoring_step then
             local amp_param = SMODS.Scoring_Parameters[self.mod.prefix..'_amp']
             local current_amp = amp_param.current
@@ -26,8 +26,8 @@ SMODS.Back {
                     play_sound('gong', 0.94, 0.3)
                     play_sound('gong', 0.94*1.2, 0.2)
                     play_sound('tarot1', 1.5)
-                    ease_colour(G.C.AMP, {0.99, 0.5, 0.16, 1})
-                    ease_colour(G.C.UI_MULT, {0.99, 0.5, 0.16, 1})
+                    ease_colour(G.C.AMP, {0.83, 0.59, 0.20, 1})
+                    ease_colour(G.C.UI_MULT, {0.83, 0.59, 0.20, 1})
                     attention_text({
                         scale = 1.4, text = text, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
                     })
@@ -37,7 +37,7 @@ SMODS.Back {
                         blocking = false,
                         delay =  0.8,
                         func = (function()
-                                ease_colour(G.C.AMP, G.C.ORANGE, 0.8)
+                                ease_colour(G.C.AMP, G.C.GREEN, 0.8)
                                 ease_colour(G.C.UI_MULT, G.C.RED, 0.8)
                             return true
                         end)
@@ -49,7 +49,7 @@ SMODS.Back {
                         no_delete = true,
                         delay =  1.3,
                         func = (function()
-                            G.C.AMP[1], G.C.AMP[2], G.C.AMP[3], G.C.AMP[4] = G.C.ORANGE[1], G.C.ORANGE[2], G.C.ORANGE[3], G.C.ORANGE[4]
+                            G.C.AMP[1], G.C.AMP[2], G.C.AMP[3], G.C.AMP[4] = G.C.GREEN[1], G.C.GREEN[2], G.C.GREEN[3], G.C.GREEN[4]
                             G.C.UI_MULT[1], G.C.UI_MULT[2], G.C.UI_MULT[3], G.C.UI_MULT[4] = G.C.RED[1], G.C.RED[2], G.C.RED[3], G.C.RED[4]
                             return true
                         end)

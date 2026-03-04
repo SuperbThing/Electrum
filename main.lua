@@ -5,19 +5,16 @@ SMODS.Atlas{
 	py = 34
 }
 
-G.C.AMP = HEX('fda200')
+G.C.AMP = HEX('4BC292')
 G.C.METAL = HEX('d4b79b')
--- G.C.INFRARED = HEX('FF822B')
--- G.C.INFRASMA = HEX('e67b82')
--- just incase i forget the hex codes
-SMODS.Gradient {
-    key = 'mump',
-    colours = {
-        HEX('FE5F55'), HEX('FDA200')
-    },
-    cycle = 5,
-    interpolation = 'trig'
-}
+-- SMODS.Gradient {
+--     key = 'mump',
+--     colours = {
+--         HEX('FE5F55'), HEX('FDA200')
+--     },
+--     cycle = 5,
+--     interpolation = 'trig'
+-- }
 
 assert(SMODS.load_file("items/amp.lua"))()
 assert(SMODS.load_file("items/enhancers.lua"))()

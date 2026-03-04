@@ -1,11 +1,7 @@
 SMODS.PokerHandPart {
     key = "blaze",
     func = function (hand)
-        local minimum = 5
-        if next(SMODS.find_card('j_four_fingers')) then
-            minimum = 4
-        end
-        if #hand < minimum then return {} end
+        if #hand < 5 then return {} end
         local scoring_cards = {}
         for _, card in ipairs(hand) do
             local rank = card:get_id()
@@ -55,3 +51,22 @@ SMODS.PokerHand {
         return { SMODS.merge_lists(parts.ele_blaze, parts._flush) }
     end,
 }
+-- SMODS.PokerHand {
+--     key = "blaze_house",
+--     visible = false,
+--     mult = 5,
+--     chips = 45,
+--     l_mult = 3,
+--     l_chips = 25,
+--     example = {
+--         { 'D_K', true },
+--         { 'H_K', true },
+--         { 'S_J', true },
+--         { 'D_J', true },
+--         { 'S_J', true }
+--     },
+--     evaluate = function(parts, hand)
+--         if #parts._3 < 1 or #parts._2 < 2 or not next(parts._blaze) then return {} end
+--         return { SMODS.merge_lists(parts._all_pairs, parts._blaze) }
+--     end
+-- }

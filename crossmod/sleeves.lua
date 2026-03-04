@@ -6,13 +6,13 @@ SMODS.Atlas {
 }
 
 CardSleeves.Sleeve {
-    key = "infrared",
-    name = "Infrared Sleeve",
+    key = "lightning",
+    name = "lightning Sleeve",
     atlas = "sleeves",
     pos = { x = 0, y = 0 },
     loc_vars = function(self)
         local key
-        if self.get_current_deck_key() == "b_ele_infrared" then
+        if self.get_current_deck_key() == "b_ele_lightning" then
             key = self.key .. "_alt"
         else
             key = self.key
@@ -21,7 +21,7 @@ CardSleeves.Sleeve {
     end,
     calculate = function(self, sleeve, context)
         if context.initial_scoring_step then
-            if self.get_current_deck_key() == "b_ele_infrared" then
+            if self.get_current_deck_key() == "b_ele_lightning" then
                 local amp_param = SMODS.Scoring_Parameters[self.mod.prefix..'_amp']
                 local current_amp = amp_param.current
                 local equalize = (hand_chips * mult * current_amp)^(1/3)
@@ -37,9 +37,9 @@ CardSleeves.Sleeve {
                         play_sound('gong', 0.94, 0.3)
                         play_sound('gong', 0.94*1.2, 0.2)
                         play_sound('tarot1', 1.5)
-                        ease_colour(G.C.AMP, {0.9, 0.48, 0.5, 1})
-                        ease_colour(G.C.UI_MULT, {0.9, 0.48, 0.5, 1})
-                        ease_colour(G.C.UI_CHIPS, {0.9, 0.48, 0.5, 1})
+                        ease_colour(G.C.AMP, {0.5, 0.5, 0.5, 1})
+                        ease_colour(G.C.UI_MULT, {0.5, 0.5, 0.5, 1})
+                        ease_colour(G.C.UI_CHIPS, {0.5, 0.5, 0.5, 1})
                         attention_text({
                             scale = 1.4, text = text, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
                         })
@@ -49,7 +49,7 @@ CardSleeves.Sleeve {
                             blocking = false,
                             delay =  0.8,
                             func = (function()
-                                    ease_colour(G.C.AMP, G.C.ORANGE, 0.8)
+                                    ease_colour(G.C.AMP, G.C.GREEN, 0.8)
                                     ease_colour(G.C.UI_MULT, G.C.RED, 0.8)
                                     ease_colour(G.C.UI_CHIPS, G.C.BLUE, 0.8)
                                 return true
@@ -62,7 +62,7 @@ CardSleeves.Sleeve {
                             no_delete = true,
                             delay =  1.3,
                             func = (function()
-                                G.C.AMP[1], G.C.AMP[2], G.C.AMP[3], G.C.AMP[4] = G.C.ORANGE[1], G.C.ORANGE[2], G.C.ORANGE[3], G.C.ORANGE[4]
+                                G.C.AMP[1], G.C.AMP[2], G.C.AMP[3], G.C.AMP[4] = G.C.GREEN[1], G.C.GREEN[2], G.C.GREEN[3], G.C.GREEN[4]
                                 G.C.UI_MULT[1], G.C.UI_MULT[2], G.C.UI_MULT[3], G.C.UI_MULT[4] = G.C.RED[1], G.C.RED[2], G.C.RED[3], G.C.RED[4]
                                 G.C.UI_CHIPS[1], G.C.UI_CHIPS[2], G.C.UI_CHIPS[3], G.C.UI_CHIPS[4] = G.C.BLUE[1], G.C.BLUE[2], G.C.BLUE[3], G.C.BLUE[4]
                                 return true
@@ -87,8 +87,8 @@ CardSleeves.Sleeve {
                         play_sound('gong', 0.94, 0.3)
                         play_sound('gong', 0.94*1.2, 0.2)
                         play_sound('tarot1', 1.5)
-                        ease_colour(G.C.AMP, {0.99, 0.5, 0.16, 1})
-                        ease_colour(G.C.UI_MULT, {0.99, 0.5, 0.16, 1})
+                        ease_colour(G.C.AMP, {0.83, 0.59, 0.20, 1})
+                        ease_colour(G.C.UI_MULT, {0.83, 0.59, 0.20, 1})
                         attention_text({
                             scale = 1.4, text = text, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
                         })
@@ -98,7 +98,7 @@ CardSleeves.Sleeve {
                             blocking = false,
                             delay =  0.8,
                             func = (function()
-                                    ease_colour(G.C.AMP, G.C.ORANGE, 0.8)
+                                    ease_colour(G.C.AMP, G.C.GREEN, 0.8)
                                     ease_colour(G.C.UI_MULT, G.C.RED, 0.8)
                                 return true
                             end)
@@ -110,7 +110,7 @@ CardSleeves.Sleeve {
                             no_delete = true,
                             delay =  1.3,
                             func = (function()
-                                G.C.AMP[1], G.C.AMP[2], G.C.AMP[3], G.C.AMP[4] = G.C.ORANGE[1], G.C.ORANGE[2], G.C.ORANGE[3], G.C.ORANGE[4]
+                                G.C.AMP[1], G.C.AMP[2], G.C.AMP[3], G.C.AMP[4] = G.C.GREEN[1], G.C.GREEN[2], G.C.GREEN[3], G.C.GREEN[4]
                                 G.C.UI_MULT[1], G.C.UI_MULT[2], G.C.UI_MULT[3], G.C.UI_MULT[4] = G.C.RED[1], G.C.RED[2], G.C.RED[3], G.C.RED[4]
                                 return true
                             end)
